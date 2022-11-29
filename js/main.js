@@ -1,10 +1,10 @@
-(function ($) {
+(function($) {
 
     "use strict";
 
     // Document ready function 
-    $(function () {
-        
+    $(function() {
+
         /*-------------------------------------
         Booking dates and time
         -------------------------------------*/
@@ -15,7 +15,7 @@
                 timepicker: false
             });
         }
-        
+
         var timePicker = $('.rt-time');
         if (timePicker.length) {
             timePicker.datetimepicker({
@@ -27,57 +27,57 @@
         /*-------------------------------------
          JQuery Serch Box
          -------------------------------------*/
-        $('#search-button').on('click', function (e) {
+        $('#search-button').on('click', function(e) {
             e.preventDefault();
             $(this).prev('.search-form').slideToggle('slow');
         });
 
 
-$(document).ready(function(){
-	// Item quantity control (shopping cart)
-$(".cart-item-plus").on('click', function() {
-    var currentVal = parseInt($(this).prev(".cart-quantity").val(), 10);
+        $(document).ready(function() {
+            // Item quantity control (shopping cart)
+            $(".cart-item-plus").on('click', function() {
+                var currentVal = parseInt($(this).prev(".cart-quantity").val(), 10);
 
-    if (!currentVal || currentVal == "" || currentVal == "NaN") currentVal = 0;
+                if (!currentVal || currentVal == "" || currentVal == "NaN") currentVal = 0;
 
-    $(this).prev(".cart-quantity").val(currentVal + 1);
-});
+                $(this).prev(".cart-quantity").val(currentVal + 1);
+            });
 
-$(".cart-item-minus").on('click', function() {
-    var currentVal = parseInt($(this).next(".cart-quantity").val(), 10);
-    if (currentVal == "NaN") currentVal = 1;
-    if (currentVal > 1) {
-        $(this).next(".cart-quantity").val(currentVal - 1);
-    }
-});
-$('.i-check, .i-radio').iCheck({
-    checkboxClass: 'i-check',
-    radioClass: 'i-radio'
-});
-$('#shipping-address-checkbox').on('ifChecked', function() {
-    $('#shipping-address').removeClass('hide');
-});
+            $(".cart-item-minus").on('click', function() {
+                var currentVal = parseInt($(this).next(".cart-quantity").val(), 10);
+                if (currentVal == "NaN") currentVal = 1;
+                if (currentVal > 1) {
+                    $(this).next(".cart-quantity").val(currentVal - 1);
+                }
+            });
+            $('.i-check, .i-radio').iCheck({
+                checkboxClass: 'i-check',
+                radioClass: 'i-radio'
+            });
+            $('#shipping-address-checkbox').on('ifChecked', function() {
+                $('#shipping-address').removeClass('hide');
+            });
 
-$('#shipping-address-checkbox').on('ifUnchecked', function() {
-    $('#shipping-address').addClass('hide');
-});
+            $('#shipping-address-checkbox').on('ifUnchecked', function() {
+                $('#shipping-address').addClass('hide');
+            });
 
-	});
+        });
 
         /*-------------------------------------
         On click loadmore functionality 
         -------------------------------------*/
-        $('.loadmore').on('click', 'a', function (e) {
+        $('.loadmore').on('click', 'a', function(e) {
             e.preventDefault();
             var _this = $(this),
                 _parent = _this.parents('.menu-list-wrapper'),
                 _target = _parent.find('.menu-list'),
                 _set = _target.find('.menu-item.hidden').slice(0, 4); // Herre 2 is the limit
             if (_set.length) {
-                _set.animate({opacity: 0});
-                _set.promise().done(function () {
+                _set.animate({ opacity: 0 });
+                _set.promise().done(function() {
                     _set.removeClass('hidden');
-                    _set.show().animate({opacity: 1}, 1000);
+                    _set.show().animate({ opacity: 1 }, 1000);
                 });
             } else {
                 _this.text('No more item to display');
@@ -92,7 +92,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
     /*-------------------------------------
      jQuery MeanMenu initialization
      --------------------------------------*/
-    $('nav#dropdown').meanmenu({siteLogo: "<a href='index.html' class='logo-mobile-menu'><img src='img/mobile-logo.png' /></a>"});
+    $('nav#dropdown').meanmenu({ siteLogo: "<a href='index.html' class='logo-mobile-menu'><img src='./static/mobile-logo.png' /></a>" });
 
     /*-------------------------------------
      Wow js Initiation 
@@ -112,10 +112,10 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
     /*-------------------------------------
      Window load function
      -------------------------------------*/
-    $(window).on('load', function () {
+    $(window).on('load', function() {
 
         // Page Preloader
-        $('#preloader').fadeOut('slow', function () {
+        $('#preloader').fadeOut('slow', function() {
             $(this).remove();
         });
 
@@ -137,7 +137,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
             });
 
             // Isotope filter
-            $container.find('.isotop-classes-tab').on('click', 'a', function () {
+            $container.find('.isotop-classes-tab').on('click', 'a', function() {
 
                 var $this = $(this);
                 $this.parent('.isotop-classes-tab').find('a').removeClass('current');
@@ -155,7 +155,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
 
             });
         }
-    });// end window load function
+    }); // end window load function
 
     /*-------------------------------------
      About Counter
@@ -177,7 +177,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
     var contactForm = $('#contact-form');
     if (contactForm.length) {
 
-        contactForm.validator().on('submit', function (e) {
+        contactForm.validator().on('submit', function(e) {
             var $this = $(this),
                 $target = contactForm.find('.form-response');
             if (e.isDefaultPrevented()) {
@@ -188,10 +188,10 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
                     url: "vendor/php/form-process.php",
                     type: "POST",
                     data: contactForm.serialize(),
-                    beforeSend: function () {
+                    beforeSend: function() {
                         $target.html("<div class='alert alert-info'><p>Loading ...</p></div>");
                     },
-                    success: function (text) {
+                    success: function(text) {
                         if (text == "success") {
                             $this[0].reset();
                             $target.html("<div class='alert alert-success'><p>Message has been sent successfully.</p></div>");
@@ -212,7 +212,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
     var reservationForm = $('#reservation-form');
     if (reservationForm.length) {
 
-        reservationForm.validator().on('submit', function (e) {
+        reservationForm.validator().on('submit', function(e) {
             var $this = $(this),
                 $target = reservationForm.find('.form-response');
             if (e.isDefaultPrevented()) {
@@ -223,10 +223,10 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
                     url: "vendor/php/reservation-form-process.php",
                     type: "POST",
                     data: reservationForm.serialize(),
-                    beforeSend: function () {
+                    beforeSend: function() {
                         $target.html("<div class='alert alert-info'><p>Loading ...</p></div>");
                     },
-                    success: function (text) {
+                    success: function(text) {
                         if (text == "success") {
                             $this[0].reset();
                             $target.html("<div class='alert alert-success'><p>Message has been sent successfully.</p></div>");
@@ -244,7 +244,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
     /*-------------------------------------
      Input Quantity Up & Down initialize
      -------------------------------------*/
-    $('#quantity-holder').on('click', '.quantity-plus', function () {
+    $('#quantity-holder').on('click', '.quantity-plus', function() {
 
         var $holder = $(this).parents('.quantity-holder');
         var $target = $holder.find('input.quantity-input');
@@ -256,7 +256,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
             $target.val($quantity);
         }
 
-    }).on('click', '.quantity-minus', function () {
+    }).on('click', '.quantity-minus', function() {
 
         var $holder = $(this).parents('.quantity-holder');
         var $target = $holder.find('input.quantity-input');
@@ -276,7 +276,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
     if ($('#googleMap').length) {
 
         //Map initialize
-        var initialize = function () {
+        var initialize = function() {
             var mapOptions = {
                 zoom: 15,
                 scrollwheel: false,
@@ -287,7 +287,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
             var marker = new google.maps.Marker({
                 position: map.getCenter(),
                 animation: google.maps.Animation.BOUNCE,
-                icon: 'img/map-marker.png',
+                icon: './static/map-marker.png',
                 map: map
             });
         }
@@ -299,7 +299,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
     /*-------------------------------------
      Carousel slider initiation
      -------------------------------------*/
-    $('.rc-carousel').each(function () {
+    $('.rc-carousel').each(function() {
 
         // Declared all carousel variable
         var carousel = $(this),
@@ -326,7 +326,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
             rMediumNav = carousel.data('r-medium-nav'),
             rMediumDots = carousel.data('r-medium-dots');
 
-            // Call carousel main function to load carousel layout
+        // Call carousel main function to load carousel layout
         carousel.owlCarousel({
             loop: (loop ? true : false),
             items: (items ? items : 4),
@@ -342,24 +342,24 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
             responsiveClass: true,
             responsive: {
                 0: {
-                    items: ( rXsmall ? rXsmall : 1),
-                    nav: ( rXsmallNav ? true : false),
-                    dots: ( rXsmallDots ? true : false)
+                    items: (rXsmall ? rXsmall : 1),
+                    nav: (rXsmallNav ? true : false),
+                    dots: (rXsmallDots ? true : false)
                 },
                 480: {
-                    items: ( rXmedium ? rXmedium : 2),
-                    nav: ( rXmediumNav ? true : false),
-                    dots: ( rXmediumDots ? true : false)
+                    items: (rXmedium ? rXmedium : 2),
+                    nav: (rXmediumNav ? true : false),
+                    dots: (rXmediumDots ? true : false)
                 },
                 768: {
-                    items: ( rSmall ? rSmall : 3),
-                    nav: ( rSmallNav ? true : false),
-                    dots: ( rSmallDots ? true : false)
+                    items: (rSmall ? rSmall : 3),
+                    nav: (rSmallNav ? true : false),
+                    dots: (rSmallDots ? true : false)
                 },
                 992: {
-                    items: ( rMedium ? rMedium : 5),
-                    nav: ( rMediumNav ? true : false),
-                    dots: ( rMediumDots ? true : false)
+                    items: (rMedium ? rMedium : 5),
+                    nav: (rMediumNav ? true : false),
+                    dots: (rMediumDots ? true : false)
                 }
             }
         });
@@ -372,7 +372,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
     /*-------------------------------------
      Window onLoad and onResize event trigger
      -------------------------------------*/
-    $(window).on('load resize', function () {
+    $(window).on('load resize', function() {
 
         //Define the maximum height for mobile menu
         var wHeight = $(window).height(),
@@ -386,7 +386,7 @@ $('#shipping-address-checkbox').on('ifUnchecked', function() {
     /*-------------------------------------
      Jquery Stiky Menu at window Load
      -------------------------------------*/
-    $(window).on('scroll', function () {
+    $(window).on('scroll', function() {
 
         var s = $('#sticker'),
             w = $('.wrapper'),
